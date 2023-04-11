@@ -1,19 +1,20 @@
 # User managment
-This is the user management web app has been developed using the Django framework and Bootstrap for the frontend. This can be integrated into any system project that needs to have a registration and login system.
+This is the user management web app has been developed using the Python Django framework. This can be integrated into any system project that needs to have a registration and login system.
 
-### Basic Features of The App
+### Basic Features 
     
-* Register – Users can register and create a new profile
-* Login - Registered users can login using username and password
-* User Profile - Once logged in, users can create and update additional information such as address and phone number in the profile page
-* Update Profile – Users can update their information such as username, email, password
-* Admin Panel – admin can users with basic (username, email, password) and custom information (address, phone number)
+* Sign up – Users can register and create a new profile
+* Sign in - Registered users can login using username and password
+* View/Update Profile - Once logged in, users can create and update the basic user profile information (address details, phone number)
+* Admin Panel for adding/updating users – admin can add/update users with basic user information (username, email, password, first name, last name) and custom profile information (address details, phone number)
+* Admin Panel for viewing audit log – admin can view the user activities like login, logout, requests. also can view the field updates (user profile model updates)
 
 ![User Home](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_home.jpg)
 ![User Sign up](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_user_sign_up.jpg)
-![Add User Profile with additional fields](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_view_profile.jpg)
+![Admin Panel for add/update user profile with custom fields](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_view_profile.jpg)
 ![User Sign in](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_user_sign_in.jpg)
 ![User profile view](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_view_profile.jpg)
+![Activity audit log](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_audit_log.jpg)
 
 ### How to run
 To get this project up and running locally on your computer follow the below steps.

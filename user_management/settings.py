@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-iv+ra2^x8pc98-1o%*5kxka$dm^thxx8oyh^92$-5i4v89go#8'
+SECRET_KEY = os.environ.get('SECRET_KEY') #here
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users' # add this
-    # 'location_field.apps.DefaultConfig'
+    'users',
+    'auditlog',
+    'easyaudit',
+    'location_field.apps.DefaultConfig',
+    'django_admin_geomap'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'auditlog.middleware.AuditlogMiddleware',
+    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
 ]
 
 ROOT_URLCONF = 'user_management.urls'
@@ -56,7 +65,7 @@ ROOT_URLCONF = 'user_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['path/to/installed/django_admin_geomap/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,9 +138,9 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
-# LOCATION_FIELD = {
-#     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-#     'provider.google.api_key': '<PLACE YOUR API KEY HERE>',
-#     'provider.google.api_libraries': '',
-#     'provider.google.map.type': 'ROADMAP',
-# }
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': os.environ.get('GOOGLE_API_KEY'),
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+}

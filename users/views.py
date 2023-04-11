@@ -1,14 +1,21 @@
 from django.shortcuts import render, redirect 
 from django.contrib import messages
 from django.views import View
+from django.shortcuts import render
 
 from django.contrib.auth.views import LoginView
 from .forms import RegisterForm, LoginForm,  UpdateUserForm, UpdateProfileForm
 
 from django.contrib.auth.decorators import login_required
+from django_admin_geomap import geomap_context
+
+from .models import Location
 
 def home(request):
     return render(request, 'users/home.html')
+
+def map(request):
+    return render(request, 'map.html', geomap_context(Location.objects.all(), auto_zoom="10"))
 
 @login_required
 def profile(request):
