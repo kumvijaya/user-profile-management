@@ -9,12 +9,13 @@ This is the user management web app has been developed using the Django framewor
 * Update Profile – Users can update their information such as username, email, password
 * Admin Panel – admin can users with basic (username, email, password) and custom information (address, phone number)
 
-![User Home](http://url)
+![User Home](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_home.jpg)
 ![Add User](http://url)
-![Add User Profile with additional fields](http://url)
-![View/Update User Profile](http://url)
+![Add User Profile with additional fields]()
+![View/Update User Profile](https://github.com/kumvijaya/user_management/blob/main/images/screenshot_view_update_profile.jpg)
 ![User Login](http://url)
 ![User Registeration](http://url)
+https://github.com/kumvijaya/user_management/blob/main/images/screenshot_view_update_profile.jpg
 
 ### How to run
 To get this project up and running locally on your computer follow the below steps.
