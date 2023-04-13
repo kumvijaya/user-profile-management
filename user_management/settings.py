@@ -14,17 +14,18 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+""" Loading .env file
+"""
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY') #here
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,7 +34,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+""" Apps used (system and custom apps)
+"""
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,9 +137,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 
+""" Default user login and redirect  Urls
+"""
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
+""" Google map location provider configuration
+"""
 LOCATION_FIELD = {
     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
     'provider.google.api_key': os.environ.get('GOOGLE_API_KEY'),

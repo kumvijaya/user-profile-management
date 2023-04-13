@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Profile
 
+"""Custom login form with user model fields for login
+"""
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=100,
                                required=True,
@@ -23,8 +25,10 @@ class LoginForm(AuthenticationForm):
         model = User
         fields = ['username', 'password', 'remember_me']
 
+
+"""Custom Registeration form with all user model fields for creating new user
+"""
 class RegisterForm(UserCreationForm):
-    # fields we want to include and customize in our form
     first_name = forms.CharField(max_length=100,
                                  required=True,
                                  widget=forms.TextInput(attrs={'placeholder': 'First Name',
@@ -61,9 +65,11 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username',
+                  'email', 'password1', 'password2']
 
-
+"""Custom User form with all user model fields for updating the existing user
+"""
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100,
                                required=True,
@@ -76,25 +82,28 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
+"""Custom User form with all user model fields for updating the user with user profile (extended custom fields)
+"""
 class UpdateProfileForm(forms.ModelForm):
     address_line1 = forms.CharField(max_length=100,
-                               required=True,
-                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+                                    required=True,
+                                    widget=forms.TextInput(attrs={'class': 'form-control'}))
     address_line2 = forms.CharField(max_length=100,
-                            required=True,
-                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+                                    required=True,
+                                    widget=forms.TextInput(attrs={'class': 'form-control'}))
     city = forms.CharField(max_length=30,
-                            required=True,
-                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+                           required=True,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     zip_code = forms.CharField(max_length=6,
-                            required=True,
-                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+                               required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     phone_number = forms.CharField(max_length=15,
-                            required=True,
-                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+                                   required=True,
+                                   widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
-        fields = ['address_line1', 'address_line2', 'city', 'zip_code', 'phone_number']
+        fields = ['address_line1', 'address_line2',
+                  'city', 'zip_code', 'phone_number']
