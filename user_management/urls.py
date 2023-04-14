@@ -19,8 +19,6 @@ from django.contrib.auth import views as auth_views
 from users.views import CustomLoginView  
 from users.forms import LoginForm
 
-"""User management URL Configuration
-"""
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')), 

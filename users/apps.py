@@ -1,10 +1,12 @@
+"""User app config registration.
+"""
 from django.apps import AppConfig
 
-""" Added signals to register and listen the events
-"""
 class UsersConfig(AppConfig):
+    """App config set with users and signals
+
+    Args:
+        AppConfig (obj): Base app config
+    """
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'users'
-    
-    def ready(self):
-        import users.signals  # noqa
