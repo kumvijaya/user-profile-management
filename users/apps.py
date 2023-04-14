@@ -3,7 +3,7 @@
 from django.apps import AppConfig
 
 class UsersConfig(AppConfig):
-    """App config set with users and signals
+    """App config set with users
 
     Args:
         AppConfig (obj): Base app config

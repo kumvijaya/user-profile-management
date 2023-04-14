@@ -5,10 +5,8 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django_admin_geomap import geomap_context
 
-from .forms import RegisterForm, LoginForm,  UpdateUserForm, UpdateProfileForm
-from .models import Location
+from .forms import RegisterForm, UpdateUserForm, UpdateProfileForm
 
 def home(request):
     """Gets the home view
@@ -20,18 +18,6 @@ def home(request):
         obj: view
     """
     return render(request, 'users/home.html')
-
-@login_required
-def map(request):
-    """Gets locations map page view
-
-    Args:
-        request (obj): request
-
-    Returns:
-        obj: view
-    """
-    return render(request, 'map.html', geomap_context(Location.objects.all(), auto_zoom="10"))
 
 @login_required
 def profile(request):
@@ -67,7 +53,6 @@ class CustomLoginView(LoginView):
     Args:
         LoginView (obj): Base view for login
     """
-    form_class = LoginForm
 
     def form_valid(self, form):
         """Override form validation method to add remember view function
@@ -80,14 +65,14 @@ class CustomLoginView(LoginView):
         """
         remember_me = form.cleaned_data.get('remember_me')
         if not remember_me:
-            # set session expiry to 0 seconds. 
+            # set session expiry to 0 seconds.
             # So it will automatically close the session after the browser is closed.
             self.request.session.set_expiry(0)
             # Set session as modified to force data updates/cookie to be saved.
             self.request.session.modified = True
-        # else browser session will be as long as the session cookie time 
+        # else browser session will be as long as the session cookie time
         # i.e."SESSION_COOKIE_AGE" defined in settings.py
-        return super(CustomLoginView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class RegisterView(View):
@@ -101,7 +86,7 @@ class RegisterView(View):
     initial = {'key': 'value'}
     template_name = 'users/register.html'
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         """Get Request handler. Renders the request with template.
 
         Args:
@@ -113,7 +98,7 @@ class RegisterView(View):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         """Post request handler. Renders the page with template after post/save.
 
         Args:
@@ -131,7 +116,7 @@ class RegisterView(View):
             return redirect(to='/')
 
         return render(request, self.template_name, {'form': form})
-    
+
     def dispatch(self, request, *args, **kwargs):
         """Dispatch request handler. Renders the page with template after redirect.
 
@@ -141,10 +126,10 @@ class RegisterView(View):
         Returns:
             obj: view
         """
-        # will redirect to the home page
+        # This will redirect to the home page
         # if a user tries to access the register page while logged in
         if request.user.is_authenticated:
             return redirect(to='/')
 
-        # else process dispatch as it otherwise normally would
-        return super(RegisterView, self).dispatch(request, *args, **kwargs)
+        # Else process dispatch as it otherwise normally would
+        return super().dispatch(request, *args, **kwargs)
