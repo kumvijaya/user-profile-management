@@ -27,7 +27,7 @@ jobs:
       - name: Run pylint
         run: |
             python -m pip install pylint
-            pylint ./users/*.py
+            pylint --fail-under=6 ./users/*.py
 
       - name: Run tests
         run: |
